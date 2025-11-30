@@ -16,7 +16,7 @@
  */
 int execute_command(char *command, char **args) {
     pid_t pid;
-    int status;
+    
 
     // TODO 1: Fork a child process
   
@@ -38,11 +38,11 @@ int execute_command(char *command, char **args) {
 
 
     // TODO 3: Parent process - Wait for child to complete
-    
+    int status;
     waitpid(pid, &status, 0);
     if( WIFEXITED(status)) {
 		int exit_status = WEXITSTATUS(status);
-		printf("Child exited with status: %d\n", exit_status);
+		return exit_status;
 	}
 	return -1;
 }
